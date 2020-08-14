@@ -5,24 +5,25 @@ export const DISPLAY_SMURFS = "DISPLAY_SMURFS";
 
 export const POST_SMURF = "POST_SMURF";
 export const POST_SMURF_COMPLETE = "POST_SMURF_COMPLETE";
+export const POST_FAIL = "POST_FAIL";
+
+
+export const fetchSmurfs = () => (dispatch) => {
+  dispatch({ type: LOAD_SMURFS });
+  axios
+  .get("http://localhost:3333/smurfs")
+  .then((res) => dispatch({ type: DISPLAY_SMURFS, payload: res.data }))
+  .catch((err) => console.log(err, "lol"));
+};
 
 export const postSmurfs = (smurf) => (dispatch) => {
   dispatch({ type: POST_SMURF });
   console.log("Before axios", smurf);
   axios
     .post("http://localhost:3333/smurfs", smurf)
-    .then((res) => dispatch({ type: POST_SMURF_COMPLETE, payload: res }));
-  console.log("i dun posted").catch((err) => console.log(err, "lol"));
+    .then((res) => dispatch({ type: POST_SMURF_COMPLETE, payload: res.data }))
+    .catch((err) => dispatch({ type: POST_FAIL, payload: err }));
 };
-
-export const fetchSmurfs = () => (dispatch) => {
-  dispatch({ type: LOAD_SMURFS });
-  axios
-    .get("http://localhost:3333/smurfs")
-    .then((res) => dispatch({ type: DISPLAY_SMURFS, payload: res.data }))
-    .catch((err) => console.log(err, "lol"));
-};
-
 // const thunk = (store) => (next) => (action) => {
 //   if (typeof action === "object") {
 //     next(action);

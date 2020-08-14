@@ -3,11 +3,13 @@ import {
   DISPLAY_SMURFS,
   POST_SMURF,
   POST_SMURF_COMPLETE,
+  POST_FAIL,
 } from "../actions";
 
 const initialState = {
   smurfs: [],
   isLoading: false,
+  error: '',
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,9 +33,15 @@ export const reducer = (state = initialState, action) => {
     case POST_SMURF_COMPLETE:
       return {
         ...state,
-        smurfs: [...state.smurfs, action.payload],
+        smurfs: [...action.payload],
         isLoading: false,
       };
+      case POST_FAIL:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload
+        }
     default:
       return state;
   }

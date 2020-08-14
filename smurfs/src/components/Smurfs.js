@@ -18,7 +18,7 @@ const Smurfs = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    postSmurfs(smarf);
+    props.postSmurfs(smarf);
     setSmarf(smurfeyValues);
     console.log(smarf)
   };
