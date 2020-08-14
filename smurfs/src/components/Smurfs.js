@@ -20,6 +20,7 @@ const Smurfs = (props) => {
     e.preventDefault();
     postSmurfs(smarf);
     setSmarf(smurfeyValues);
+    console.log(smarf)
   };
 
   useEffect(() => {

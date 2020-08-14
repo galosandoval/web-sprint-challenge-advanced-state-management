@@ -20,7 +20,7 @@ application state is on the global scale. if you want your state to be available
 
 1. Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
 
-redux-thunk just middleware that lets you call action creators that returns a function.
+redux-thunk just middleware that lets you call action creators that returns a function. it allows you to do asycnchronis function calls
 
 1. What is your favorite state management system you've learned and this sprint? Please explain why!
 
