@@ -1,16 +1,67 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchSmurfs, postSmurfs } from "../actions";
 import { connect } from "react-redux";
 
 const Smurfs = (props) => {
+  const smurfeyValues = {
+    name: "",
+    age: "",
+    height: "",
+    id: new Date(),
+  };
+
+  const [smarf, setSmarf] = useState(smurfeyValues);
+
+  const onChange = (e) => {
+    setSmarf({ ...smarf, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    postSmurfs(smarf);
+    setSmarf(smurfeyValues);
+  };
+
   useEffect(() => {
     props.fetchSmurfs();
     console.log(props);
   }, []);
   return (
-    <div>
+    <div onSubmit={onSubmit}>
       <h2>What's up Smurfs?</h2>
-      <form></form>
+      <form>
+        <label htmlFor="name">
+          <input
+            name="name"
+            id="name"
+            type="text"
+            placeholder="Smurf's Name"
+            value={smarf.name}
+            onChange={onChange}
+          />
+        </label>
+        <label htmlFor="age">
+          <input
+            name="age"
+            id="age"
+            type="text"
+            placeholder="Smurf's age"
+            value={smarf.age}
+            onChange={onChange}
+          />
+        </label>
+        <label htmlFor="height">
+          <input
+            name="height"
+            id="height"
+            type="text"
+            placeholder="Smurf's height"
+            value={smarf.height}
+            onChange={onChange}
+          />
+        </label>
+        <button type="submit">Add New Smurf</button>
+      </form>
       {props.isLoading ? <h4>Loading smurfs now...</h4> : null}
       {props.smurfs.length > 0 ? (
         <div className="card-container">

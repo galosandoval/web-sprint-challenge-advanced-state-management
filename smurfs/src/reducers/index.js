@@ -20,19 +20,19 @@ export const reducer = (state = initialState, action) => {
     case DISPLAY_SMURFS:
       return {
         ...state,
-        isLoading: false,
         smurfs: action.payload,
-      };
-    case POST_SMURF_COMPLETE:
-      return {
-        ...state,
         isLoading: false,
-        smurfs: action.payload,
       };
     case POST_SMURF:
       return {
         ...state,
         isLoading: true,
+      };
+    case POST_SMURF_COMPLETE:
+      return {
+        ...state,
+        smurfs: [...state.smurfs, action.payload],
+        isLoading: false,
       };
     default:
       return state;

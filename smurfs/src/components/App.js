@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Smurfs from "./Smurfs";
 import "./App.css";
-class App extends Component {
-  render() {
+
+function App() {
     return (
       <div className="App">
         <h1>SMURFS! W/Redux</h1>
@@ -10,6 +10,6 @@ class App extends Component {
       </div>
     );
   }
-}
+
 
 export default App;
