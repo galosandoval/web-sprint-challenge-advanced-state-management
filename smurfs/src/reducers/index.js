@@ -1,4 +1,9 @@
-import { LOAD_SMURFS, DISPLAY_SMURFS } from "../actions";
+import {
+  LOAD_SMURFS,
+  DISPLAY_SMURFS,
+  POST_SMURF,
+  POST_SMURF_COMPLETE,
+} from "../actions";
 
 const initialState = {
   smurfs: [],
@@ -17,6 +22,17 @@ export const reducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         smurfs: action.payload,
+      };
+    case POST_SMURF_COMPLETE:
+      return {
+        ...state,
+        isLoading: false,
+        smurfs: action.payload,
+      };
+    case POST_SMURF:
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
       return state;

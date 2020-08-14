@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchSmurfs } from "../actions";
+import { fetchSmurfs, postSmurfs } from "../actions";
 import { connect } from "react-redux";
 
 const Smurfs = (props) => {
@@ -10,6 +10,7 @@ const Smurfs = (props) => {
   return (
     <div>
       <h2>What's up Smurfs?</h2>
+      <form></form>
       {props.isLoading ? <h4>Loading smurfs now...</h4> : null}
       {props.smurfs.length > 0 ? (
         <div className="card-container">
@@ -33,4 +34,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchSmurfs })(Smurfs);
+export default connect(mapStateToProps, { fetchSmurfs, postSmurfs })(Smurfs);
